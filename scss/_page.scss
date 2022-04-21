@@ -1,0 +1,237 @@
+body {
+	background: url('../images/bg-page.jpg') #01566f no-repeat;
+	background-size: 100%;
+	color: $blanco;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 1.5;
+	@media (max-width: 991px) {
+		background-size: initial;
+		background-position: center top;
+	}		
+}
+body.vista-padres {
+	background: url('../images/bg-home-padres.jpg') #01566f no-repeat;
+}
+.bg-azul {background-color: $azul}
+.bg-blanco {background-color: $blanco}
+.bg-oscuro {background-color: $oscuro}
+.bg-amarillo {background-color: $amarillo}
+.bg-rosado {background-color: $rosado}
+.bg-celeste {background-color: $celeste}
+.bg-verde {background-color: $verde}
+.bg-negro {background-color: $negro}
+.bg-naranja {background-color: $naranja}
+
+.color-azul {color: $azul}
+.color-blanco {color: $blanco}
+.color-oscuro {color: $oscuro}
+.color-amarillo {color: $amarillo}
+.color-negro {color: $negro}
+.color-naranja {color: $naranja}
+.seccion-page {
+	padding: 70px 0
+}
+h1, h2, h3, h4 {
+	font-family: 'Montserrat', sans-serif;
+}
+h4 {line-height: 1.5}
+img {max-width: 100%; height: auto}
+.container {max-width: 1150px}
+.item-hidden {
+	display: none;
+}
+.single {
+	background: url('../images/bg-single.jpg') 0 0 / cover no-repeat;
+	@media (max-width: 991px) {
+		background-position: -230px top;
+	}		
+}
+.page-template-template_gracias {
+	background: url('../images/bg-single.jpg') 0 0 / cover no-repeat;
+	@media (max-width: 991px) {
+		background-position: -230px top;
+	}			
+}
+.single.vista-padres {
+	background: url('../images/bg-internas.jpg') 0 0 / cover no-repeat;
+	@media (max-width: 991px) {
+		background-position: -230px top;
+	}		
+}
+.page-template-template_gracias.vista-padres {
+	background: url('../images/bg-single.jpg') 0 0 / cover no-repeat;
+	@media (max-width: 991px) {
+		background-position: -230px top;
+	}			
+}
+
+.detalle-item-evento {
+	.left-detalle-single {
+		.titulo-categoria-eventos {
+			font-size: 14px;
+			a {
+			    background: #4c4c4c;
+			    color: #fff;
+			    padding: 5px 10px;
+			    text-decoration: none;
+			}
+		}
+		.titulo-single {
+		    color: $blanco;
+		    font-size: 2.3rem;
+		    font-weight: 700;			
+		    margin-bottom: 40px;
+		}
+		.fecha-novedades {
+			font-size: 22px;
+			font-weight: 600;
+			i {margin-right: 10px}
+		}		
+	}
+	.right-detalle-single {
+		picture {
+			display: flex;
+			@media (min-width: 991px) {
+				margin-top: -150px;
+			}			
+		}
+	}
+	#slider-ponentes {
+		.item-ponente {
+			border-bottom: 2px dashed $blanco;
+			border-top: 2px dashed $blanco;
+			padding: 25px 0;
+			.top-ponente {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				padding: 25px 0;
+				figure {
+					width: 155px;
+					img {
+						border: 2px solid $blanco;
+						border-radius: 25px;
+					}
+				}
+				div.meta-top {
+					padding-left: 40px;
+					width: calc(100% - 160px);
+					p {font-size: 16px}
+				}
+			}
+		}
+	}
+}
+
+// EVENTOS
+.botones-form {
+	button {
+		background-color: transparent;
+		border: 2px solid $blanco;
+		border-radius: 20px;		
+		color: #fff;
+		width: 48%;		
+	    line-height: 19px;
+	    font-size: 16px;
+	    font-weight: 500;	
+	    padding: 8px 15px;	
+	}
+	button.active {
+		background-color: #d0774973;
+		border-color: #d07749;
+	}	
+}
+
+.formulario-evento {
+    background: #ffffff36;
+    padding: 40px;
+    border-radius: 30px;
+    border: 2px solid $blanco;
+    margin-top: 40px;	
+	#frm-registro {
+		margin-top: 40px;	
+	    input[type="text"], input[type="tel"], input[type="email"], select {
+		    background: #ffffff36;
+		    color: $blanco;
+		    padding: 5px 10px;
+		    border-radius: 10px;
+		    border: 1px solid $blanco;   
+		    width: 100%;
+		    &::placeholder {
+		    	color: $blanco;
+		    }	
+	    }
+	    select {
+	    	option {background: $verde}
+	    }
+	    #btn_submit {
+	    	background: linear-gradient(90deg, #8f2c77 0%,#0f2080 100%);;
+		    border-radius: 10px;
+		    border: 1px solid $blanco;       	
+	    	color: $blanco;
+	    	padding: 5px 10px;
+	    	width: 280px
+	    }
+	    #appdpdc {
+			font-size: 14px;
+			text-align: center;
+	    	a {color: $blanco}
+	    	.form-check-inline {
+	    		display: inline-block;
+	    		margin: 0 5px;
+	    	}
+	    }
+	}
+}
+
+#asistiran {
+    background: url(../images/fondo-asistiran.png) 0 0/100% 100% no-repeat;
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-top: 50px;
+}
+
+#relacionados {
+	.container {
+		max-width: 1320px;
+		.slick-dots {left: 0}
+		.slick-dots li button:before {
+			color: $blanco;
+			font-size: 15px;
+			opacity: 1!important
+		}
+		.slick-dots li.slick-active button:before {
+			color: $amarillo;
+			font-size: 15px;
+		}
+	}
+}
+
+// PAGINA GRACIAS
+.iframe-block {
+    padding: 5rem 5rem;
+    background: #ffffff3b;
+    border-radius: 30px;
+    border: 2px solid #fff;
+	background-image: url('../images/bullets-gracias.png');
+	background-position: 15px 15px;
+	background-repeat: no-repeat;
+    h2.titulo-seccion {
+		font-size: 3.2rem;
+		font-weight: 900;
+		letter-spacing: .5px;
+		span {color: $amarillo}
+		@media (max-width: 991px) {
+			font-size: 2.2rem;
+		} 		
+    }
+	@media (max-width: 991px) {
+		padding: 3rem 2rem;
+	}    
+}
+
+@media (max-width: 767px) {
+
+}

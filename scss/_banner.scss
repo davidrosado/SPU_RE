@@ -1,0 +1,52 @@
+#banner-home {
+    background: url('../images/fondo-banner-home.png') 0 0 no-repeat;
+    padding-top: 380px;
+    position: relative;
+    @media (max-width: 991px) {
+        padding-top: 180px;
+        background: none;
+    }    
+    #sello-ad {
+        position: absolute;
+        right: 0px;
+        bottom: 10px;
+        @media (max-width: 991px) {
+            display: none
+        }         
+    }    
+    .right-banner {
+        font-size: 20px;
+        max-width: 450px
+    }
+    .arrow-down {
+        margin-top: -150px;
+         @media (max-width: 991px) {
+            margin-top: -80px;
+        } 
+    }
+}
+.vista-padres {
+    #banner-home {
+        padding-top: 270px;
+    }
+}
+
+.franja {
+
+    $ancho: 80em;
+    overflow: hidden;
+
+    .d-flex {
+        transform: translateX(-1 * $ancho*2);
+    }
+    
+    .img {
+        width: $ancho;
+        animation: franja 9s infinite linear;
+        margin: 0 20px;
+    }
+
+    @keyframes franja {
+        0% {transform: translateX($ancho);}
+    }
+}
