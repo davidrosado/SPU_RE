@@ -22,10 +22,23 @@
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 						<?php the_content(); ?>		
 					<?php endwhile; ?>		
-					<?php endif; ?>  					
+					<?php endif; ?>  	
+					
+					<?php if ($TEXTO_GRACIAS_EVENTO) {
+						echo '<div class="mt-3 text-center">';
+						echo $TEXTO_GRACIAS_EVENTO;
+						echo '</div>';
+					}
+					?>
 				</div>
 			</div>	
 		</div>
+
+		<div class="row justify-content-center mt-5">
+			<div class="cta-page-gracias text-center">
+				<img width="55" src="<?php echo get_stylesheet_directory_uri()?>/images/icono-calendario.png"> <a href="https://www.google.com/calendar/event?action=TEMPLATE&amp;dates=<?php echo $FECHA_INICIO_EVENTO ?>T<?php echo $HORA_INICIO_EVENTO?>/<?php echo $FECHA_FIN_EVENTO ?>T<?php echo $HORA_FIN_EVENTO?>&amp;text=<?php echo $TITULO_EVENTO;?>&amp;trp=false&amp;ctz=America/Lima&amp;sprop=website:<?php bloginfo('url')?>" target="_blank" rel="noreferrer noopener" class="boton-cta">AGREGAR EVENTO A TU CALENDARIO</a>
+			</div>	
+		</div>		
 	</div>	
 </section>
 

@@ -7092,6 +7092,7 @@ img {
   border: 2px solid #fff;
   border-radius: 20px;
   color: #fff;
+  margin: 0 1%;
   width: 48%;
   line-height: 19px;
   font-size: 16px;
@@ -7146,6 +7147,12 @@ img {
   display: inline-block;
   margin: 0 5px;
 }
+.formulario-evento #frm-registro .wpcf7-spinner {
+  display: block;
+}
+.formulario-evento #frm-registro .wpcf7-not-valid-tip {
+  font-size: 14px;
+}
 
 #asistiran {
   background: url(../images/fondo-asistiran.png) 0 0/100% 100% no-repeat;
@@ -7175,9 +7182,6 @@ img {
   background: #ffffff3b;
   border-radius: 30px;
   border: 2px solid #fff;
-  background-image: url("../images/bullets-gracias.png");
-  background-position: 15px 15px;
-  background-repeat: no-repeat;
 }
 .iframe-block h2.titulo-seccion, .iframe-block .titulo-seccion.h2 {
   font-size: 3.2rem;
@@ -7196,6 +7200,31 @@ img {
   .iframe-block {
     padding: 3rem 2rem;
   }
+}
+
+#frame-gracias {
+  background-image: url("../images/bullets-gracias.png");
+  background-position: 15px 15px;
+  background-repeat: no-repeat;
+}
+
+.cta-page-gracias img {
+  margin: 0 10px 10px 0;
+}
+.cta-page-gracias .boton-cta {
+  background: linear-gradient(90deg, #04abc6 0%, #0f2080 100%);
+  border: 2px solid #fff;
+  border-radius: 20px;
+  color: #fff;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 8px 35px;
+  text-decoration: none;
+  width: auto;
+}
+.cta-page-gracias .boton-cta:hover {
+  background: #0facc4;
 }
 
 /*inicio*/

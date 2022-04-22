@@ -132,6 +132,7 @@ img {max-width: 100%; height: auto}
 		border: 2px solid $blanco;
 		border-radius: 20px;		
 		color: #fff;
+		margin: 0 1%;
 		width: 48%;		
 	    line-height: 19px;
 	    font-size: 16px;
@@ -183,6 +184,13 @@ img {max-width: 100%; height: auto}
 	    		margin: 0 5px;
 	    	}
 	    }
+		.wpcf7-spinner {
+			display: block;
+		}
+		
+		.wpcf7-not-valid-tip {
+			font-size: 14px;
+		}
 	}
 }
 
@@ -215,9 +223,6 @@ img {max-width: 100%; height: auto}
     background: #ffffff3b;
     border-radius: 30px;
     border: 2px solid #fff;
-	background-image: url('../images/bullets-gracias.png');
-	background-position: 15px 15px;
-	background-repeat: no-repeat;
     h2.titulo-seccion {
 		font-size: 3.2rem;
 		font-weight: 900;
@@ -231,7 +236,36 @@ img {max-width: 100%; height: auto}
 		padding: 3rem 2rem;
 	}    
 }
+#frame-gracias {
+	background-image: url('../images/bullets-gracias.png');
+	background-position: 15px 15px;
+	background-repeat: no-repeat;
+}
 
+.cta-page-gracias {
+	img {
+		margin: 0 10px 10px 0
+	}
+
+	;
+
+	.boton-cta {
+		background: linear-gradient(90deg, #04abc6 0%, #0f2080 100%);
+		border: 2px solid $blanco;
+		border-radius: 20px;
+		color: $blanco;
+		display: inline-block;
+		font-size: 20px;
+		font-weight: 700;
+		padding: 8px 35px;
+		text-decoration: none;
+		width: auto;
+
+		&:hover {
+			background: $verde;
+		}
+	}
+}
 @media (max-width: 767px) {
 
 }

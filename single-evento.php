@@ -6,9 +6,10 @@
 	$idPost = $wp_query->get_queried_object_id();
 	$contador = (int) get_field('field_6255b33c14d70',$_POST_ID);
 
-  $link = get_the_permalink();
-  $titulo = get_the_title();
+  	$link = get_the_permalink();
+  	$titulo = get_the_title();
 	$slug = basename(get_permalink($idPost));
+	$redirect = get_bloginfo('url').'/gracias';
 
   /* Tipo de dispositivo */
   $es_movil = '0';

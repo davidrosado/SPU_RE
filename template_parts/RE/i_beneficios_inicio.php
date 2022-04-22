@@ -3,7 +3,7 @@
     <section id="beneficios" class="seccion-page">
         <div class="container"> 
             <div class="row">
-                <div id="iframe-beneficios" class="d-flex flex-wrap iframe-block">    
+                <div id="iframe-beneficios" class="d-flex flex-wrap iframe-block pb-3">    
                     <?php while ( have_rows('bloque_beneficios') ) : the_row(); ?>                
                         <div class="item-beneficio col-md-4 mb-3 text-center wow fadeInDown" data-wow-duration="3s">
                             <?php 

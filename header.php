@@ -1,6 +1,7 @@
 <?php
 $dev = TRUE;
 $v_ = ($dev) ? '?v=' . rand(100, 999) : '';
+session_start();
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>

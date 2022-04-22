@@ -236,6 +236,12 @@ $(window).scroll(function(){
     document.getElementById('CORREO_PROSPECTO').value = ""
     document.getElementById('user-old').classList.remove('active')
     document.getElementById('user-new').classList.add('active')    
+
+    document.getElementById('content-campo-NOMBRES_PROSPECTO').classList.remove("hidden")
+    document.getElementById('content-campo-APATERNO_PROSPECTO').classList.remove("hidden")
+    document.getElementById('content-campo-AMATERNO_PROSPECTO').classList.remove("hidden")
+    document.getElementById('content-campo-CELULAR_PROSPECTO').classList.remove("hidden")
+    document.getElementById('flex-campos').classList.remove("flex-column-reverse")        
   }
 
   function userOld() {
@@ -245,6 +251,13 @@ $(window).scroll(function(){
     document.getElementById('DNI_PROSPECTO').value = localStorage.getItem('DNI_PROSPECTO')
     document.getElementById('CELULAR_PROSPECTO').value = localStorage.getItem('CELULAR_PROSPECTO')
     document.getElementById('CORREO_PROSPECTO').value = localStorage.getItem('CORREO_PROSPECTO')
+
+    document.getElementById('content-campo-NOMBRES_PROSPECTO').classList.add("hidden")
+    document.getElementById('content-campo-APATERNO_PROSPECTO').classList.add("hidden")
+    document.getElementById('content-campo-AMATERNO_PROSPECTO').classList.add("hidden")
+    document.getElementById('content-campo-CELULAR_PROSPECTO').classList.add("hidden")
+    document.getElementById('flex-campos').classList.add("flex-column-reverse")
+
     document.getElementById('user-old').classList.add('active')
     document.getElementById('user-new').classList.remove('active')
   }
