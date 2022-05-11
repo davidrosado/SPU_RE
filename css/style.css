@@ -6890,6 +6890,35 @@ progress {
   }
 }
 
+section#bottom-banner {
+  padding: 50px 0;
+  background: #ffffff14;
+}
+
+.contenedor-banner {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1rem;
+  position: relative;
+  /*background-color: #ffffff3b;
+  background-image: url(../images/bullets-gracias.png);
+  background-position: 15px 15px;
+  background-repeat: no-repeat;
+  border-radius: 30px;
+  border: 2px solid #fff;**/
+}
+.contenedor-banner .formulario-evento {
+  background: #ffffff36;
+  padding: 40px;
+  border-radius: 30px;
+  border: 2px solid #fff;
+}
+.contenedor-banner .formulario-evento #frm-registro {
+  margin-top: 0;
+}
+
 body {
   background: url("../images/bg-page.jpg") #01566f no-repeat;
   background-size: 100%;
@@ -6907,7 +6936,7 @@ body {
 }
 
 body.vista-padres {
-  background: url("../images/bg-home-padres.jpg") #01566f no-repeat;
+  background: url(../images/bg-home-padres.jpg) #38275b no-repeat;
 }
 
 .bg-azul {
@@ -7366,7 +7395,7 @@ img {
 }
 
 .vista-padres .bloque-de-eventos .bottom-eventos {
-  background: url(../images/bg-eventos-padres.jpg) 0 250px no-repeat;
+  background: url(../images/bg-eventos-padres.jpg) 0 250px #fff no-repeat;
 }
 
 #beneficios {

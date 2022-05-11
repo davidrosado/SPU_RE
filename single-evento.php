@@ -4,23 +4,26 @@
  	global $wp;
 
 	$idPost = $wp_query->get_queried_object_id();
-	$contador = (int) get_field('field_6255b33c14d70',$_POST_ID);
+	$contador = (int) get_field('contador',$_POST_ID);
 
   	$link = get_the_permalink();
   	$titulo = get_the_title();
 	$slug = basename(get_permalink($idPost));
 	$redirect = get_bloginfo('url').'/gracias';
+	$carreras = get_field('carreras','option');
+	//$IDCAMPANIA = get_field('field_62673b7445dd8','option');
+	//echo $IDCAMPANIA;   
 
   /* Tipo de dispositivo */
-  $es_movil = '0';
-  if (preg_match('/(android|wap|phone|ipad)/i', strtolower($_SERVER['HTTP_USER_AGENT']))) {
+  	$es_movil = '0';
+  	if (preg_match('/(android|wap|phone|ipad)/i', strtolower($_SERVER['HTTP_USER_AGENT']))) {
       $es_movil++;
-  }
-  if ($es_movil > 0) {
+  	}
+  	if ($es_movil > 0) {
       $DISPOSITIVO = "MOBILE";
-  } else {
+  	} else {
       $DISPOSITIVO = "PC";
-  }
+  	}
 
 	$terms = get_the_terms( $post->ID , 'categoria_evento');
 	if($terms) {
@@ -56,6 +59,34 @@
 	$END_TIME = get_field('hora_final_evento',false,false);
 	$time_end = new DateTime($END_TIME);
 	$new_end_time = $time_end->format('His');
+
+	$campania_alumnos = get_field('id_campania_alumnos', 'option');
+	$campania_coordinadores = get_field('id_campania_coordinadores', 'option');
+	$campania_directores = get_field('id_campania_directores', 'option');
+	$campania_docentes = get_field('id_campania_docentes', 'option');
+	$campania_padres = get_field('id_campania_padres', 'option');
+	$campania_global = get_field('id_campania_global', 'option');
+    
+    switch ($cat_slug2) {
+        case 'alumnos':
+            update_field('codigo_campana', $campania_alumnos, $post->ID);
+            break;
+        case 'coordinadores':
+            update_field('codigo_campana', $campania_coordinadores, $post->ID);
+            break;
+        case 'directores':
+            update_field('codigo_campana', $campania_directores, $post->ID);
+            break;
+        case 'docentes':
+            update_field('codigo_campana', $campania_docentes, $post->ID);
+            break;	
+        case 'padres':
+            update_field('codigo_campana', $campania_padres, $post->ID);
+            break;									        
+        default:
+            update_field('codigo_campana', $campania_global, $post->ID);
+            break;
+    }
 ?>
 
 <section id="contenido-pagina" class="seccion-page">
@@ -73,67 +104,70 @@
 					<?php endif; ?> 
 				</div>
 
-				<div id="slider-ponentes" class="ponentes col-12 px-0 mt-3 d-inline-block wow fadeInLeft" data-wow-duration="2s">
-					<?php
-						if( have_rows('ponentes') ):
-							while ( have_rows('ponentes') ) : the_row(); ?>                
-							<div class="item-slider item-ponente">
-								<?php 
-									$nombre = get_sub_field('nombre_ponente'); 
-									$cargo = get_sub_field('cargo_ponente'); 
-									$imagen = get_sub_field('imagen_ponente');
-									$descripcion = get_sub_field('descripcion_ponente');
-								?>
-								<div class="top-ponente">
-									<?php if ($imagen): ?>
-										<figure>
-											<img class="img-responsive" src="<?php echo $imagen ?>"/>     
-										</figure>
-									<?php endif ?>  
+				
+				<?php if( have_rows('ponentes') ): ?>
+					<div id="slider-ponentes" class="ponentes col-12 px-0 mt-3 d-inline-block wow fadeInLeft" data-wow-duration="2s">
+						<?php while ( have_rows('ponentes') ) : the_row(); ?>                
+						<div class="item-slider item-ponente">
+							<?php 
+								$nombre = get_sub_field('nombre_ponente'); 
+								$cargo = get_sub_field('cargo_ponente'); 
+								$imagen = get_sub_field('imagen_ponente');
+								$descripcion = get_sub_field('descripcion_ponente');
+							?>
+							<div class="top-ponente">
+								<?php if ($imagen): ?>
+									<figure>
+										<img class="img-responsive" src="<?php echo $imagen ?>"/>     
+									</figure>
+								<?php endif ?>  
 
-									<div class="meta-top">
-										<h3>
-											Ponente<br><strong><?php echo $nombre ?></strong>
-										</h3> 
-										<?php if ($cargo): ?>
-											<p><?php echo $cargo ?></p>
-										<?php endif ?>		                    	
-									</div>	 
-								</div>
-					
+								<div class="meta-top">
+									<h3>
+										Ponente<br><strong><?php echo $nombre ?></strong>
+									</h3> 
+									<?php if ($cargo): ?>
+										<p><?php echo $cargo ?></p>
+									<?php endif ?>		                    	
+								</div>	 
+							</div>					
 
-								<?php if ($descripcion): ?>
-									<div class="descripcion-ponente">
-										<?php echo $descripcion ?>   
-									</div>      
-								<?php endif ?>   
+							<?php if ($descripcion): ?>
+								<div class="descripcion-ponente">
+									<?php echo $descripcion ?>   
+								</div>      
+							<?php endif ?>   
 
-							</div>  
-							<?php endwhile; 
-					endif; ?>    					
-				</div>
+						</div>  
+						<?php endwhile; ?>
+					</div>
+				<?php endif; ?>    
 
 				<div class="fecha-novedades wow fadeInLeft" data-wow-duration="2s">
-					<p class="dia-fecha"><i class="far fa-clock"></i> <?php the_field('fecha_evento') ?></p>
-					<p class="mes-fecha"><i class="far fa-calendar"></i> <?php the_field('hora_evento') ?></p>
+					<?php if(get_field('fecha_evento')): ?>
+						<p class="dia-fecha"><i class="far fa-clock"></i> <?php the_field('fecha_evento') ?></p>
+					<?php endif?>
+					<?php if(get_field('hora_evento')): ?>
+						<p class="mes-fecha"><i class="far fa-calendar"></i> <?php the_field('hora_evento') ?></p>
+					<?php endif?>	
 				</div>	
 			</div>
 
 			<div class="col-md-5 right-detalle-single wow fadeInRight" data-wow-duration="2s">
-		    <picture>
-		      <source media="(max-width: 990px)" srcset="<?php the_post_thumbnail_url('medium'); ?>">
-		      <source media="(min-width: 991px)" srcset="<?php the_post_thumbnail_url('full'); ?>">
-		      <img src="<?php the_post_thumbnail_url('full'); ?>">
-		    </picture>
+				<picture>
+				<source media="(max-width: 990px)" srcset="<?php the_post_thumbnail_url('medium'); ?>">
+				<source media="(min-width: 991px)" srcset="<?php the_post_thumbnail_url('full'); ?>">
+				<img src="<?php the_post_thumbnail_url('full'); ?>">
+				</picture>
 
-		    <div class="formulario-evento">
-		    	<div class="botones-form d-flex justify-content-center">
-		    		<button id="user-new" class="active" onclick="userNew();">NUEVO <br>USUARIO</button>
-					<button id="user-old" onclick="userOld();">USUARIO <br>REGISTRADO</button>
-		    	</div>
+				<div class="formulario-evento">
+					<div class="botones-form d-flex justify-content-center">
+						<button id="user-new" class="active" onclick="userNew();">NUEVO <br>USUARIO</button>
+						<button id="user-old" onclick="userOld();">USUARIO <br>REGISTRADO</button>
+					</div>
 
-		    	<?php echo do_shortcode('[contact-form-7 id="53" html_id="frm-registro" title="Formulario de Evento"]') ?>
-		    </div>
+					<?php echo do_shortcode('[contact-form-7 id="53" html_id="frm-registro" title="Formulario de Evento"]') ?>
+				</div>
 				
 			</div>	
 		</div>
@@ -245,12 +279,31 @@ new UsilTerms(termsOptions).init();
  // CAMPOS CRM
   document.getElementById('campo_1').value = '<?php the_field('campo_1') ?>'   
   document.getElementById('campo_2').value = '<?php the_field('campo_2') ?>'   
-  document.getElementById('campo_3').value = '<?php the_field('campo_3') ?>'    
+  document.getElementById('campo_3').value = '<?php the_field('campo_3') ?>'   
+  document.getElementById('campo_4').value = '<?php the_field('campo_4') ?>'   
+  document.getElementById('campo_zoom').value = '<?php the_field('campo_zoom') ?>'        
   
   // VARIABLE PARA REDIFIRIGIR LUEGO DE EVENTO SENT DE CF7
   urlredirect = '<?php echo $redirect ?>'
-  //console.log(urlredirect)        
 </script>
+
+<style>
+	.formulario-evento #frm-registro select optgroup {
+		background: #0facc4;
+	}
+</style>
+
+<?php if ($cat_slug2 == 'alumnos') :?>
+	<script>
+		carreras = document.getElementById("CODIGO_CARRERA")
+		carreras.innerHTML = '<?php echo $carreras ?>'
+	</script>
+<?php else : ?>
+	<script>
+		carreras = document.getElementById("content-campo-CODIGO_CARRERA")
+		carreras.classList.add('hidden')
+	</script>
+<?php endif ?>
 
 <?php
 	if ($cat_slug2 == 'padres') {

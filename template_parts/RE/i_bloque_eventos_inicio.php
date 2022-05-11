@@ -113,7 +113,11 @@
 										</div>	
 
 										<div class="cta-item text-center my-3">
-											<span class="boton-cta">CONOCE MÁS</span>
+											<span class="boton-cta">Conoce más</span>
+										</div>	
+
+										<div class="cta-item text-center my-3">
+											<span class="boton-cta">Inscribirse</span>
 										</div>					
 									</div>
 								</a>

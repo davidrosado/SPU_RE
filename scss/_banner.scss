@@ -50,3 +50,33 @@
         0% {transform: translateX($ancho);}
     }
 }
+
+section#bottom-banner {
+    padding: 50px 0;
+    background: #ffffff14;
+}
+
+.contenedor-banner {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1rem;
+    position: relative;
+    /*background-color: #ffffff3b;
+    background-image: url(../images/bullets-gracias.png);
+    background-position: 15px 15px;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+    border: 2px solid #fff;**/
+
+    .formulario-evento {
+        background: #ffffff36;
+        padding: 40px;
+        border-radius: 30px;
+        border: 2px solid $blanco;
+        #frm-registro {
+            margin-top: 0;
+        }
+    }
+}

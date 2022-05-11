@@ -234,6 +234,7 @@ $(window).scroll(function(){
     document.getElementById('DNI_PROSPECTO').value = ""
     document.getElementById('CELULAR_PROSPECTO').value = ""
     document.getElementById('CORREO_PROSPECTO').value = ""
+    document.getElementById('CODIGO_CARRERA').value = ""       
     document.getElementById('user-old').classList.remove('active')
     document.getElementById('user-new').classList.add('active')    
 
@@ -241,6 +242,7 @@ $(window).scroll(function(){
     document.getElementById('content-campo-APATERNO_PROSPECTO').classList.remove("hidden")
     document.getElementById('content-campo-AMATERNO_PROSPECTO').classList.remove("hidden")
     document.getElementById('content-campo-CELULAR_PROSPECTO').classList.remove("hidden")
+    document.getElementById('content-campo-CODIGO_CARRERA').classList.remove("hidden")    
     document.getElementById('flex-campos').classList.remove("flex-column-reverse")        
   }
 
@@ -251,11 +253,13 @@ $(window).scroll(function(){
     document.getElementById('DNI_PROSPECTO').value = localStorage.getItem('DNI_PROSPECTO')
     document.getElementById('CELULAR_PROSPECTO').value = localStorage.getItem('CELULAR_PROSPECTO')
     document.getElementById('CORREO_PROSPECTO').value = localStorage.getItem('CORREO_PROSPECTO')
+    document.getElementById('CODIGO_CARRERA').value = localStorage.getItem('CODIGO_CARRERA')    
 
     document.getElementById('content-campo-NOMBRES_PROSPECTO').classList.add("hidden")
     document.getElementById('content-campo-APATERNO_PROSPECTO').classList.add("hidden")
     document.getElementById('content-campo-AMATERNO_PROSPECTO').classList.add("hidden")
     document.getElementById('content-campo-CELULAR_PROSPECTO').classList.add("hidden")
+    document.getElementById('content-campo-CODIGO_CARRERA').classList.add("hidden")    
     document.getElementById('flex-campos').classList.add("flex-column-reverse")
 
     document.getElementById('user-old').classList.add('active')
@@ -285,7 +289,10 @@ $(window).scroll(function(){
       }  
       if ( 'CORREO_PROSPECTO' == inputs[i].name ) {
         localStorage.setItem('CORREO_PROSPECTO', inputs[i].value)
-      }             
+      }     
+      if ( 'CODIGO_CARRERA' == inputs[i].name ) {
+        localStorage.setItem('CODIGO_CARRERA', inputs[i].value)
+      }                   
       if ( 'SLUG_CATEGORIA' == inputs[i].name ) {
         localStorage.setItem('SLUG_CATEGORIA', inputs[i].value)
       } 
@@ -298,3 +305,24 @@ $(window).scroll(function(){
     location = urlredirect
     
   }, false );
+
+
+document.addEventListener('wpcf7submit',function(event){
+  var status=event.detail.status;
+  //console.log(status);
+  var button=$('.wpcf7-submit[disabled]');
+  var old_value=button.attr('data-value');
+  button.prop('disabled',false);
+  button.val(old_value);
+},false);
+
+$('form.wpcf7-form').on('submit',function(){
+  var form=$(this);
+  var formid=form.attr('id');
+  var button=form.find('input[type=submit]');
+  var buttonid=button.attr('id');
+  var current_val=button.val();
+  $('input#'+buttonid).attr('data-value',current_val);
+  $('input#'+buttonid).prop("disabled",true);
+  $('input#'+buttonid).val("Enviando...");
+});

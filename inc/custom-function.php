@@ -7,14 +7,21 @@ $linkredirect = get_the_permalink();
 // Variables de configuración para panel digital
 $pdConfig['end_point'] = 'https://paneldigital.usil.edu.pe/api/savelead';
 $pdConfig['token'] = 'c6e3e41d-f406-4ca5-b562-fdd2099928de';
+//$IDCAMPANIA = get_field('field_6270091fd4d46','option');
+//$IDCAMPANIA = get_field('field_627bbe78aa6fe',$post->ID);
 
 function elContador() {
     //global $post;
     //$data = 0;
-    $contador = (int) get_field('field_6255b33c14d70',$post->ID);
+    $contador = (int) get_field('contador',$post->ID);
     //$contador++;
     //update_field('field_6255b33c14d70', $data, $post->ID);
     return $contador;
+}
+
+function setearCampania() {
+    global $post;
+
 }
 
 add_action( 'wpcf7_before_send_mail', 'action_wpcf7_before_send_mail', 10, 1 );
@@ -22,16 +29,23 @@ add_action( 'wpcf7_before_send_mail', 'action_wpcf7_before_send_mail', 10, 1 );
 function action_wpcf7_before_send_mail( $contact_form ) {
     global $pdConfig;
     global $post;
+    global $IDCAMPANIA;
 
+       
     $wpcf7 = WPCF7_ContactForm::get_current();
     $submission = WPCF7_Submission::get_instance();
 
     //Devuelve todos los datos enviados por formulario.
     $data = $submission->get_posted_data();
 
+    // Obteniendo ID Campaña del POST
+    $IDCAMPANIA = get_field('codigo_campana', $data['POSTSINGLE']);    
+
     //Preparar información para enviar a panel digital
     $postFields = array(
-        'ID_CAMPANA' => '514',
+        $data['ID_CAMPANIA'] = $IDCAMPANIA,
+        //'ID_CAMPANA' => '1140',
+        'ID_CAMPANA' => $data['ID_CAMPANIA'],
         'NOMBRES_PROSPECTO' => $data['NOMBRES_PROSPECTO'],
         'APATERNO_PROSPECTO' => $data['APATERNO_PROSPECTO'],
         'AMATERNO_PROSPECTO' => $data['AMATERNO_PROSPECTO'],   
@@ -39,9 +53,10 @@ function action_wpcf7_before_send_mail( $contact_form ) {
         'CELULAR_PROSPECTO' => $data['CELULAR_PROSPECTO'],
         'DNI_PROSPECTO' => $data['DNI_PROSPECTO'],
         'DISPOSITIVO' => $data['DISPOSITIVO'],
-        'TEXTO' => $data['TEXTO'],
-        'TEXTO_2' => $data['POSTSINGLE'],
-        'URL_ORIGEN' => $data['URL_ORIGEN'],   
+        //'ANIO_ESTUDIOS' => $data['ANIO_ESTUDIOS'][0],
+        'TEXTO' => $data['NOMBRE_EVENTO'],
+        'TEXTO_2' => 'POST ID: ' . $data['POSTSINGLE'],
+        'URL_ORIGEN' => $data['utm_origin'],  
         'utm_term' => $data['utm_term'],
         'utm_source' => $data['utm_source'],
         'utm_medium' => $data['utm_medium'],             
@@ -50,7 +65,11 @@ function action_wpcf7_before_send_mail( $contact_form ) {
         'utm_content' => $data['utm_content'], 
         'campo_1' => $data['campo_1'],      
         'campo_2' => $data['campo_2'], 
-        'campo_3' => $data['campo_3'],                             
+        'campo_3' => $data['campo_3'],  
+        'campo_4' => $data['campo_4'],
+        'CARRERA_INTERES' => $data['NOMBRE_EVENTO'],
+        'comodin_1' => $data['POSTSINGLE'], //POST ID       
+        'CODIGO_CARRERA' => $data['CODIGO_CARRERA'][0] // CODIGO CARRERA                          
     );
 
     //Iniciamos CURL
@@ -86,7 +105,7 @@ function action_wpcf7_before_send_mail( $contact_form ) {
 
     if (!empty($jason['success'])) {
         // UPDATE FIELD CONTADOR
-        update_field('field_6255b33c14d70', $data['TEXTO'], $data['POSTSINGLE']);        
+        update_field('contador', $data['TEXTO'], $data['POSTSINGLE']);        
     } else {
 
     }
