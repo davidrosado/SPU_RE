@@ -3,7 +3,17 @@
   $isLocalStorage = FALSE;
 	$redirect = get_bloginfo('url').'/gracias';
 	$carreras = get_field('carreras','option');
-
+  /* Tipo de dispositivo */
+  	$es_movil = '0';
+  	if (preg_match('/(android|wap|phone|ipad)/i', strtolower($_SERVER['HTTP_USER_AGENT']))) {
+      $es_movil++;
+  	}
+  	if ($es_movil > 0) {
+      $DISPOSITIVO = "MOBILE";
+  	} else {
+      $DISPOSITIVO = "PC";
+  	}
+    
   get_header('padres'); 
 ?>
 
@@ -20,7 +30,19 @@
 
 <?php 
   $c = -1;
-  $custom_args = array('post_type' => 'evento','posts_per_page' => -1,'orderby'	=> 'date','order'	=> 'ASC');
+  $custom_args = array(
+		'post_type' => 'evento',
+		'posts_per_page' => -1,
+		'orderby'	=> 'date',
+		'order'	=> 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy'  => 'dirigido',
+				'field'     => 'slug',
+				'terms'     => 'padres'
+			)
+		),	    
+  );
   $custom_query = new WP_Query( $custom_args ); 
   if ( $custom_query->have_posts() ) : ?>
   <?php while ( $custom_query->have_posts() ) : $custom_query->the_post(); $c++?>
