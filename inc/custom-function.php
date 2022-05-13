@@ -69,7 +69,9 @@ function action_wpcf7_before_send_mail( $contact_form ) {
         'campo_4' => $data['campo_4'],
         'CARRERA_INTERES' => $data['NOMBRE_EVENTO'],
         'comodin_1' => $data['POSTSINGLE'], //POST ID       
-        'CODIGO_CARRERA' => $data['CODIGO_CARRERA'][0] // CODIGO CARRERA                          
+        'CODIGO_CARRERA' => $data['CODIGO_CARRERA'][0], // CODIGO CARRERA       
+        'INSTITUCION_PROCEDENCIA' => $data['INSTITUCION_PROCEDENCIA'],
+        'DISTRITO_PROSPECTO' => $data['DISTRITO_PROSPECTO'],                   
     );
 
     //Iniciamos CURL

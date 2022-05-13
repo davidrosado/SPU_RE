@@ -211,11 +211,9 @@ new UsilTerms(termsOptions).init();
 <script type="text/javascript">
 	let botonAntiguo = document.getElementById("user-old")
 	if (localStorage.getItem("NOMBRES_PROSPECTO") == null) {
-		//console.log(botonAntiguo);
 		botonAntiguo.classList.add("hidden")
 	} else {
 		botonAntiguo.classList.remove("hidden")
-		//console.log(botonAntiguo);
 	}
 
   document.getElementById("DISPOSITIVO").value = '<?php echo $DISPOSITIVO; ?>';
@@ -293,15 +291,31 @@ new UsilTerms(termsOptions).init();
 	}
 </style>
 
-<?php if ($cat_slug2 == 'alumnos') :?>
+<?php if ($cat_slug2 == 'alumnos' || $cat_slug2 == 'padres') :?>
 	<script>
+		campoOculto = false
 		carreras = document.getElementById("CODIGO_CARRERA")
 		carreras.innerHTML = '<?php echo $carreras ?>'
+		colegio = document.getElementById("content-campo-INSTITUCION_PROCEDENCIA")
+		distrito = document.getElementById("content-campo-DISTRITO_PROSPECTO")
+		colegio.classList.add('hidden')
+		distrito.classList.add('hidden')	
+		if (localStorage.getItem("CODIGO_CARRERA") == null) {
+			botonAntiguo.classList.add("hidden")
+		} else {
+			botonAntiguo.classList.remove("hidden")
+		}				
 	</script>
 <?php else : ?>
 	<script>
+		campoOculto = true
 		carreras = document.getElementById("content-campo-CODIGO_CARRERA")
 		carreras.classList.add('hidden')
+		if (localStorage.getItem("INSTITUCION_PROCEDENCIA") == null || localStorage.getItem("CODIGO_CARRERA")) {
+			botonAntiguo.classList.add("hidden")
+		} else {
+			botonAntiguo.classList.remove("hidden")
+		}		
 	</script>
 <?php endif ?>
 

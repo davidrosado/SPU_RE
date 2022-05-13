@@ -1,20 +1,32 @@
 <?php
   /*Template Name: Página de Inicio Padres */
+
+  get_header('padres'); 
+
+  global $wp;
+  $codigo_campania = get_field('codigo_campana');
+	$campania_padres = get_field('id_campania_padres', 'option');
+	$campania_global = get_field('id_campania_global', 'option');
+
+  if ($campania_padres) {
+    update_field('codigo_campana', $campania_padres, $post->ID);
+  } else {
+    update_field('codigo_campana', $campania_global, $post->ID);
+  }
+
   $isLocalStorage = FALSE;
 	$redirect = get_bloginfo('url').'/gracias';
 	$carreras = get_field('carreras','option');
   /* Tipo de dispositivo */
-  	$es_movil = '0';
-  	if (preg_match('/(android|wap|phone|ipad)/i', strtolower($_SERVER['HTTP_USER_AGENT']))) {
-      $es_movil++;
-  	}
-  	if ($es_movil > 0) {
-      $DISPOSITIVO = "MOBILE";
-  	} else {
-      $DISPOSITIVO = "PC";
-  	}
-    
-  get_header('padres'); 
+  $es_movil = '0';
+  if (preg_match('/(android|wap|phone|ipad)/i', strtolower($_SERVER['HTTP_USER_AGENT']))) {
+    $es_movil++;
+  }
+  if ($es_movil > 0) {
+    $DISPOSITIVO = "MOBILE";
+  } else {
+    $DISPOSITIVO = "PC";
+  }   
 ?>
 
 <?php include 'template_parts/PADRES/i_banner_inicio.php' ?>
@@ -114,6 +126,7 @@
     // POPULATE SELECT ELEMENT WITH JSON.
     selectEventos.innerHTML = selectEventos.innerHTML + '<option data-fecha="'+listEventos[i]['start_date']+'" data-indice="'+listEventos[i]['indice']+'" value="'+listEventos[i]['titulo']+'">'+listEventos[i]['titulo']+'</option>';
   }  
+  document.querySelector('#POSTSINGLE').value = '<?php echo $post->ID ?>'
 </script>
 
 <script src="//descubre.usil.edu.pe/CDN/disclaimerV2/dist/usilterms.min.js?v=406"></script>
@@ -174,7 +187,9 @@
 
     // CAMPOS PARA POSTS RELACIONADOS EN PAGINA DE GRACIAS
     document.querySelector('#SLUG_CATEGORIA').value = listEventos[opcion]['categ_slug']
-    document.querySelector('#POSTSINGLE').value = listEventos[opcion]['idPost']
+    
+    //document.querySelector('#POSTSINGLE').value = listEventos[opcion]['idPost']
+    //document.querySelector('#POSTSINGLE').value = '<?php echo $idPost?>'
 
     // CAMPO CONTADOR DE LEADS
     document.querySelector('#TEXTO').value = listEventos[opcion]['contador'] + 1
