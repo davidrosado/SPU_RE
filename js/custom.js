@@ -234,9 +234,6 @@ $(window).scroll(function(){
     document.getElementById('DNI_PROSPECTO').value = ""
     document.getElementById('CELULAR_PROSPECTO').value = ""
     document.getElementById('CORREO_PROSPECTO').value = ""
-    document.getElementById('CODIGO_CARRERA').value = ""  
-    document.getElementById('INSTITUCION_PROCEDENCIA').value = ""       
-    document.getElementById('DISTRITO_PROSPECTO').value = ""       
 
     document.getElementById('content-campo-NOMBRES_PROSPECTO').classList.remove("hidden")
     document.getElementById('content-campo-APATERNO_PROSPECTO').classList.remove("hidden")
@@ -244,9 +241,12 @@ $(window).scroll(function(){
     document.getElementById('content-campo-CELULAR_PROSPECTO').classList.remove("hidden")
     if (campoOculto == false) { // ALUMNOS Y PADRES
       document.getElementById('content-campo-CODIGO_CARRERA').classList.remove("hidden")  
+      document.getElementById('CODIGO_CARRERA').value = ""        
     } else {
       document.getElementById('content-campo-INSTITUCION_PROCEDENCIA').classList.remove("hidden")
       document.getElementById('content-campo-DISTRITO_PROSPECTO').classList.remove("hidden")    
+      document.getElementById('INSTITUCION_PROCEDENCIA').value = ""       
+      document.getElementById('DISTRITO_PROSPECTO').value = ""           
     }   
   
     document.getElementById('flex-campos').classList.remove("flex-column-reverse")        
@@ -259,17 +259,25 @@ $(window).scroll(function(){
     document.getElementById('DNI_PROSPECTO').value = localStorage.getItem('DNI_PROSPECTO')
     document.getElementById('CELULAR_PROSPECTO').value = localStorage.getItem('CELULAR_PROSPECTO')
     document.getElementById('CORREO_PROSPECTO').value = localStorage.getItem('CORREO_PROSPECTO')
-    document.getElementById('CODIGO_CARRERA').value = localStorage.getItem('CODIGO_CARRERA')
-    document.getElementById('INSTITUCION_PROCEDENCIA').value = localStorage.getItem('INSTITUCION_PROCEDENCIA')
-    document.getElementById('DISTRITO_PROSPECTO').value = localStorage.getItem('DISTRITO_PROSPECTO')        
+
+    if (campoOculto == false) { // ALUMNOS Y PADRES
+      document.getElementById('CODIGO_CARRERA').value = localStorage.getItem('CODIGO_CARRERA')   
+    } else {
+      document.getElementById('INSTITUCION_PROCEDENCIA').value = localStorage.getItem('INSTITUCION_PROCEDENCIA')
+      document.getElementById('DISTRITO_PROSPECTO').value = localStorage.getItem('DISTRITO_PROSPECTO')         
+    }   
+
+    if (campoOculto == false) { // ALUMNOS Y PADRES
+      document.getElementById('content-campo-CODIGO_CARRERA').classList.add("hidden")   
+    } else {
+      document.getElementById('content-campo-INSTITUCION_PROCEDENCIA').classList.add("hidden")
+      document.getElementById('content-campo-DISTRITO_PROSPECTO').classList.add("hidden")        
+    }   
 
     document.getElementById('content-campo-NOMBRES_PROSPECTO').classList.add("hidden")
     document.getElementById('content-campo-APATERNO_PROSPECTO').classList.add("hidden")
     document.getElementById('content-campo-AMATERNO_PROSPECTO').classList.add("hidden")
     document.getElementById('content-campo-CELULAR_PROSPECTO').classList.add("hidden")
-    document.getElementById('content-campo-CODIGO_CARRERA').classList.add("hidden")   
-    document.getElementById('content-campo-INSTITUCION_PROCEDENCIA').classList.add("hidden")
-    document.getElementById('content-campo-DISTRITO_PROSPECTO').classList.add("hidden")    
     
     document.getElementById('flex-campos').classList.add("flex-column-reverse")
 
@@ -323,7 +331,7 @@ $(window).scroll(function(){
     
   }, false );
 
-
+  
 document.addEventListener('wpcf7submit',function(event){
   var status=event.detail.status;
   //console.log(status);

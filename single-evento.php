@@ -66,7 +66,7 @@
 	$campania_docentes = get_field('id_campania_docentes', 'option');
 	$campania_padres = get_field('id_campania_padres', 'option');
 	$campania_global = get_field('id_campania_global', 'option');
-    
+
     switch ($cat_slug2) {
         case 'alumnos':
             update_field('codigo_campana', $campania_alumnos, $post->ID);
@@ -166,7 +166,32 @@
 						<button id="user-old" onclick="userOld();">USUARIO <br>REGISTRADO</button>
 					</div>
 
-					<?php echo do_shortcode('[contact-form-7 id="53" html_id="frm-registro" title="Formulario de Evento"]') ?>
+					<?php
+						$form_alumnos = get_field('form_alumnos', 'option');
+						$form_autoridades = get_field('form_autoridades', 'option');
+						$form_padres = get_field('form_padres', 'option');
+						$form_global = get_field('form_global', 'option');					
+						switch ($cat_slug2) {
+							case 'alumnos':
+								echo do_shortcode($form_alumnos) ;
+								break;
+							case 'coordinadores':
+								echo do_shortcode($form_autoridades) ;
+								break;
+							case 'directores':
+								echo do_shortcode($form_autoridades) ;
+								break;
+							case 'docentes':
+								echo do_shortcode($form_autoridades) ;
+								break;	
+							case 'padres':
+								echo do_shortcode($form_padres) ;
+								break;									        
+							default:
+								echo do_shortcode($form_global) ;
+								break;
+						}					
+					?>
 				</div>
 				
 			</div>	
@@ -210,11 +235,15 @@ new UsilTerms(termsOptions).init();
 
 <script type="text/javascript">
 	let botonAntiguo = document.getElementById("user-old")
-	if (localStorage.getItem("NOMBRES_PROSPECTO") == null) {
-		botonAntiguo.classList.add("hidden")
-	} else {
-		botonAntiguo.classList.remove("hidden")
+	function load() {
+		if (localStorage.getItem("NOMBRES_PROSPECTO")) {
+			botonAntiguo.classList.remove("hidden")
+		} else {
+			botonAntiguo.classList.add("hidden")
+		}
 	}
+    window.onload = load;
+
 
   document.getElementById("DISPOSITIVO").value = '<?php echo $DISPOSITIVO; ?>';
   document.getElementById("utm_origin").value = '<?php echo $link; ?>';
@@ -296,10 +325,7 @@ new UsilTerms(termsOptions).init();
 		campoOculto = false
 		carreras = document.getElementById("CODIGO_CARRERA")
 		carreras.innerHTML = '<?php echo $carreras ?>'
-		colegio = document.getElementById("content-campo-INSTITUCION_PROCEDENCIA")
-		distrito = document.getElementById("content-campo-DISTRITO_PROSPECTO")
-		colegio.classList.add('hidden')
-		distrito.classList.add('hidden')	
+
 		if (localStorage.getItem("CODIGO_CARRERA") == null) {
 			botonAntiguo.classList.add("hidden")
 		} else {
@@ -311,6 +337,7 @@ new UsilTerms(termsOptions).init();
 		campoOculto = true
 		carreras = document.getElementById("content-campo-CODIGO_CARRERA")
 		carreras.classList.add('hidden')
+
 		if (localStorage.getItem("INSTITUCION_PROCEDENCIA") == null || localStorage.getItem("CODIGO_CARRERA")) {
 			botonAntiguo.classList.add("hidden")
 		} else {
